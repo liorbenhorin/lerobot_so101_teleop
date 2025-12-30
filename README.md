@@ -59,12 +59,12 @@ Episoded are recorded directly to Lerobot Dataset, and can quickly be uploaded t
 
 - Make sure your Lerobot _Leader_ arm has been [calibrated](https://huggingface.co/docs/lerobot/en/so101#calibrate).
 
-- Edit `scripts/lerobot_agent.py` by changing `lerobot_cfg` to match your port and id of your setup. (You have this information from the calibration step)
+- Edit `source/lerobot_so101_teleop/scripts/lerobot_agent.py` by changing `lerobot_cfg` to match your port and id of your setup. (You have this information from the calibration step)
 
 - Verify that the extension is correctly installed by listing the available tasks:
 
     ```bash
-    python scripts/list_envs.py
+    list_envs
     ```
     You should see a several environments named like `Lerobot-So101-Teleop-*`
 
@@ -72,7 +72,7 @@ Episoded are recorded directly to Lerobot Dataset, and can quickly be uploaded t
 - Run the environment
 
     ```bash
-    python scripts/lerobot_agent.py --task Lerobot-So101-Teleop-Rock-A-Stack-Simple
+    lerobot_agent --task Lerobot-So101-Teleop-Rock-A-Stack-Simple
     ```
 - Get familiar with the teleop feeling
 
@@ -81,7 +81,7 @@ Episoded are recorded directly to Lerobot Dataset, and can quickly be uploaded t
 - Run the environment and include dataset repo-id and repo-root (They will get created if not already exists)
 
     ```bash
-    python scripts/lerobot_agent.py --task Lerobot-So101-Teleop-Rock-A-Stack-Hard \
+    lerobot_agent --task Lerobot-So101-Teleop-Rock-A-Stack-Hard \
     --repo_id ${HF_USER}/so101_teleop \
     --repo_root $(pwd)/datasets/so101_teleop \
     --task_name "Pick up the yellow ring and put it on the pole"
@@ -106,12 +106,10 @@ Episoded are recorded directly to Lerobot Dataset, and can quickly be uploaded t
 
 - To push your dataset to HuggingFace Hub (Optional)
     ```bash
-    python scripts/lerobot_utils.py \
-    --push \
+    lerobot_push_dataset \
     --repo-id hf-repo-id/so101_teleop \
     --root $(pwd)/datasets/so101_teleop \
     --tags robotics teleop rock-a-stack \ # separate by spaces
-    --private # or dont specify to push public
     ```
 
 ## Evaluate policy
@@ -119,7 +117,7 @@ Episoded are recorded directly to Lerobot Dataset, and can quickly be uploaded t
 We assume you already trained a model based on the data collected (either in simulation or in real) and have a model ready to use
 
 ```bash
-    python scripts/lerobot_eval.py \
+    lerobot_eval \
     --task Lerobot-So101-Teleop-Rock-A-Stack-Hard-Eval \
     --policy_path ${HF_USER}/your_policy
 ```

@@ -72,8 +72,8 @@ import isaaclab_tasks  # noqa: F401
 from isaaclab_tasks.utils import parse_env_cfg
 
 import lerobot_so101_teleop.tasks  # noqa: F401
-from lerobot_so101_teleop.keyboard import KeyboardControl
-from lerobot_so101_teleop.lerobot_interface import LeRobotSO101Interface
+from lerobot_so101_teleop.utils.keyboard import KeyboardControl
+from lerobot_so101_teleop.utils.lerobot_interface import LeRobotSO101Interface
 
 
 def main():

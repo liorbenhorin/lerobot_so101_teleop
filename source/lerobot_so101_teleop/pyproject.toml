@@ -10,6 +10,14 @@ authors = [
     { name="Lior Ben Horin", email="liorbenhorin@gmail.com" }
 ]
 requires-python = ">=3.11"
-dependencies = [
-    "lerobot[feetech]==0.4.0",
-]
+#dependencies = [
+#    "lerobot[feetech]==0.4.0",
+#]
+
+[project.scripts]
+list_envs = "lerobot_so101_teleop.scripts.list_envs:main"
+zero_agent = "lerobot_so101_teleop.scripts.zero_agent:main"
+random_agent = "lerobot_so101_teleop.scripts.random_agent:main"
+teleop_agent = "lerobot_so101_teleop.scripts.teleop_agent:main"
+lerobot_agent = "lerobot_so101_teleop.scripts.lerobot_agent:main"
+lerobot_push_dataset = "lerobot_so101_teleop.scripts.lerobot_push_dataset:main"

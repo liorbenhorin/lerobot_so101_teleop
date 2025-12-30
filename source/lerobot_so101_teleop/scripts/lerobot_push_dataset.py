@@ -13,15 +13,6 @@ parser.add_argument(
     "--root", type=str, default=None, help="Repository root to store the dataset."
 )
 parser.add_argument(
-    "--push",
-    action="store_true",
-    default=False,
-    help="Push the dataset to HuggingFace Hub.",
-)
-parser.add_argument(
-    "--private", action="store_true", default=False, help="Private dataset."
-)
-parser.add_argument(
     "--tags",
     type=str,
     nargs="+",
@@ -33,7 +24,7 @@ args_cli = parser.parse_args()
 
 
 def push_dataset_to_hub(
-    repo_id: str, root: str, private: bool = True, tags: list[str] = None
+    repo_id: str, root: str, tags: list[str] = None
 ):
     try:
         dataset = LeRobotDataset(repo_id=repo_id, root=root)
@@ -42,14 +33,12 @@ def push_dataset_to_hub(
         return
 
     print(f"[INFO]: Pushing dataset to HuggingFace Hub...")
-    dataset.push_to_hub(private=private, tags=tags)
+    dataset.push_to_hub(tags=tags)
 
 
 if __name__ == "__main__":
-    if args_cli.push:
-        push_dataset_to_hub(
-            repo_id=args_cli.repo_id,
-            root=args_cli.root,
-            private=args_cli.private,
-            tags=args_cli.tags,
-        )
+    push_dataset_to_hub(
+        repo_id=args_cli.repo_id,
+        root=args_cli.root,
+        tags=args_cli.tags,
+    )
